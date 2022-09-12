@@ -1,0 +1,173 @@
+:root{
+  --cor1: #e7e7e6;
+  --cor2: #000000;
+  --cor3: #000000;
+  --cor4: #000000;
+  --cor5: #bebebe;
+}
+
+
+
+#app {
+  max-width: 1920px;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: white;
+  font-weight: normal;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+  background-color: var(--cor2);
+  color: black;
+  height: 10%;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+footer {
+  background-color: var(--cor2);
+  color: black;
+  height: 15%;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+.pesquisar{
+  display: flex;
+}
+main {
+  height: 70%;
+  background-color: var(--cor1);
+}
+.up {
+  display: flex;
+  
+}
+ a{
+  color: white;
+ }
+
+
+.blocos-superior{
+  padding: 2px;
+}
+.blocos-superior .bloco1{
+  display: flex;
+  float: left;
+  width: 500px;
+  height: 170px;
+  border:3px solid var(--cor3);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 100px;
+  background-color: white;
+}
+
+.blocos-superior .bloco2{
+  display: flex;
+  float: right;
+  width: 500px;
+  height: 170px;
+  border:3px solid var(--cor3);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-right: 100px;
+  background-color: white;
+}
+
+.blocos-inferior .bloco3{
+  display: flex;
+  float: left;
+  width: 500px;
+  height: 170px;
+  border:3px solid var(--cor3);
+  border-radius: 10px;
+  margin-top: 90px;
+  margin-left: 100px;
+  background-color: white;
+}
+
+.blocos-inferior .bloco4{
+  display: flex;
+  float: right;
+  width: 500px;
+  height: 170px;
+  border:3px solid var(--cor3);
+  border-radius: 10px;
+  margin-top: 90px;
+  margin-right: 100px;
+  background-color: white;
+}
+
+.list-livros{
+  background-color: var(--cor1);
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.tabela{
+  width: 40%;
+}
+
+.container{
+  padding-top: 5px;
+}
+
+.title {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .form-input {
+    display: flex;
+    justify-content: center;
+   align-items: center;
+  }
+  .form-input input {
+    width: 50%;
+    border: 3px solid var(--cor4);
+    border-radius: 10px;
+    padding: 0 0.5rem;
+    height: 40px;
+  }
+  
+  .form-input button {
+    height: 40px;
+    margin-left: 1%;
+    font-weight: bold;
+    border: 3px solid;
+    border-radius: 10px;
+    width: 15%;
+  }
+  .list-items {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  table {
+    width: 60%;
+    border: 3px solid var(--cor3);
+    border-collapse: collapse;
+    text-align: center;
+    background-color: var(--cor1);
+  }
+
+  table thead {
+    background-color: var(--cor2);
+    color: rgb(247, 247, 247);
+  }
+
+  table thead th {
+    font-weight: bolder;
+  }
+
+  table tbody tr:nth-child(odd) {
+    background-color: var(--cor5);
+    border-radius: 2px black;
+  }
+ 
