@@ -1,41 +1,26 @@
 <script>
-import { v4 as uuid } from "uuid";
+import livrosApi from "@/api/livros.js";
+const LivrosApi = new livrosApi();
 export default {
   data() {
     return {
-      novo_livro: " ",
-      novo_autor: "",
-      novo_editora: "",
-      novo_categoria: "",
-      livros: [
-        {
-          id: "093f8gt5-e800-11ec-8fea-0137pd940758",
-          livro: "as cronicas de adolf",
-          autor: "Sus von rich",
-          editora: "NZ",
-          categoria:"ação"
-        },
-      ],
+      livro: {},
+      livros: [],
     };
   },
+  async created() {
+    this.livros = await livrosApi.buscarTodosOsLivros();
+  },
   methods: {
-    salvar() {
-      const id = uuid();
-      this.livros.push({
-        id: id,
-        livro: this.novo_livro,
-        autor: this.novo_autor,
-        editora: this.novo_editora,
-        categoria: this.novo_categoria,
-      });
+    async salvar() {
+      await livrosApi.adicionarLivro(this.livro);
+      this.categoria = {};
+      this.livros = await livrosApi.buscarTodosOsLivros();
     },
 
-    excluir(livro) {
-      const indice = this.livros.indexOf(livro);
-      this.livros.splice(indice, 1);
-    },
-    alerta() {
-      alert("ok");
+    async excluir(livro) {
+      await livrosApi.excluirLivro(livro.id);
+      this.livros = await livrosApi.buscarTodosOsLivros();
     },
   },
 };
@@ -47,19 +32,19 @@ export default {
       <h2>Classificação de livros</h2>
     </div>
     <div class="form-input">
-      <input type="text" placeholder="Nome" v-model="novo_livro" />
-      <input type="text" placeholder="Nome" v-model="novo_autor" />
-      <input type="text" placeholder="Nome" v-model="novo_editora" />
-      <button @click="salvar">Salvar</button>
+      <input type="text" placeholder="Nome" v-model="livro.book" />
+      <input type="text" placeholder="Nome" v-model="livro.autor" />
+      <input type="text" placeholder="Nome" v-model="livro.editora" />
+      
     </div>
     <div>
-      <select class="form-select" id="form" aria-label="Default select example" v-model="novo_categoria">
-        <option selected>Categorias</option>
-        <option value="terror">Terror</option>
-        <option value="ação">Ação</option>
-        <option value="fantasia">Fantasia</option>
+      <select class="form-select" id="form" aria-label="Default select example" v-model="livro.categoria">
+        <option selected>Categoria</option>
+        <option value="1">Terror</option>
+        <option value="2">Ação</option>
+        <option value="3">Fantasia</option>
       </select>
-    </div>
+    </div><button @click="salvar">Salvar</button>
     <div class="list-livro">
       <table>
         <thead>
@@ -68,21 +53,18 @@ export default {
             <th>Livro</th>
             <th>Autor</th>
             <th>Editora</th>
-            <th>categoria</th>
-            <th></th>
+            <th>Categoria</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="livro in livros" :key="livro.id">
             <td>{{ livro.id }}</td>
-            <td>{{ livro.livro }}</td>
-            <td>{{livro.autor}}</td>
-            <td>{{ livro.editora }}</td>
-            <td>{{ livro.categoria}}</td>
-            <th></th>
+            <td>{{ livro.book }}</td>
+            <td>{{ livro.autor }}</td>
+            <td>{{ livro.editora}}</td>
+            <td>{{ livro.categoria }}</td>
             <td>
-              <button @click="alerta">Editar</button>
-              <button @click="excluir">excluir</button>
+              <button @click="excluir(livro)">excluir</button>
             </td>
           </tr>
         </tbody>
@@ -91,6 +73,4 @@ export default {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

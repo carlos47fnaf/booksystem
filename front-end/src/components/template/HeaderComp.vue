@@ -10,8 +10,8 @@
       <span><RouterLink to="/Autores">Autores</RouterLink></span>
     </div>
     <div class="pesquisar">
-      <input class="pesquisar" type="search" placeholder="Pesquisar..." />
-      
+      <input class="pesquisar" type="text" placeholder="Pesquisar..." />
+      <button class="p_b">P</button>
     </div>
     <div class="sair">
       <RouterLink to="/login">Sair</RouterLink>
@@ -46,7 +46,7 @@ header span {
   margin-left: 64px;
 }
 .pesquisar {
-  
+  padding-right: 80px;
   margin-left: 10px;
   border: 1px solid;
   border-radius: 5px;
@@ -54,5 +54,11 @@ header span {
   height: 30px;
   font-size: 15px;
 }
-
+.p_b {
+  margin-left: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+}
 </style>

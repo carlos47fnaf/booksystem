@@ -1,35 +1,26 @@
 <script>
-import { v4 as uuid } from "uuid";
+import EditorasApi from "@/api/editoras.js";
+const editorasApi = new EditorasApi();
 export default {
   data() {
     return {
-      novo_site: "",
-      novo_editora: "",
-      livros: [
-        {
-          id: "442e6fe2-e800-11ec-8fea-0242ac120002",
-          acao: "Editora deez nut",
-          site: "https://www.deez.nut.org/",
-        },
-      ],
+      editora: {},
+      editoras: [],
     };
   },
+  async created() {
+    this.editoras = await editorasApi.buscarTodasAsEditoras();
+  },
   methods: {
-    salvar() {
-      const id = uuid();
-      this.livros.push({
-        id: id,
-        acao: this.novo_editora,
-        site: this.novo_site,
-      });
+    async salvar() {
+      await editorasApi.adicionarEditora(this.editora);
+      this.editora = {};
+      this.editoras = await editorasApi.buscarTodasAsEditoras();
     },
 
-    excluir(jogador) {
-      const indice = this.livros.indexOf(jogador);
-      this.livros.splice(indice, 1);
-    },
-    alerta() {
-      alert("ok");
+    async excluir(editora) {
+      await editorasApi.excluirEditora(editora.id);
+      this.editoras = await editorasApi.buscarTodasAsEditoras();
     },
   },
 };
@@ -41,8 +32,8 @@ export default {
       <h2>Editoras</h2>
     </div>
     <div class="form-input">
-      <input type="text" placeholder="Nome" v-model="novo_editora" />
-      <input type="text" placeholder="Nome" v-model="novo_site" />
+      <input type="text" placeholder="Nome" v-model="editora.editors" /> 
+      <input type="text" placeholder="Nome" v-model="editora.site" />
       <button @click="salvar">Salvar</button>
     </div>
     <div class="list-livros">
@@ -56,13 +47,12 @@ export default {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="livro in livros" :key="livro.id">
-            <td>{{ livro.id }}</td>
-            <td>{{ livro.acao }}</td>
-            <td>{{ livro.site }}</td>
+          <tr v-for="editora in editoras" :key="editora.id">
+            <td>{{ editora.id }}</td>
+            <td>{{ editora.editors}}</td>
+            <td>{{ editora.site }}</td>
             <td>
-              <button @click="alerta">Editar</button>
-              <button @click="excluir">excluir</button>
+              <button @click="excluir(editora)">excluir</button>
             </td>
           </tr>
         </tbody>

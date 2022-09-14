@@ -2,12 +2,18 @@
 
 <template>
   <main>
-    <div class="titulo"><h2>Login</h2></div>
+    <div class="titulop"><h2>Login</h2></div>
     <div class="container">
-      <div class="pessoal">
-        <p id="name" class="name"></p>
-        <form class="form-">
-          <span id="email" class="email"></span>
+      <div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img
+          id="profile-img"
+          class="profile-img-card"
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+          <span id="reauth-email" class="reauth-email"></span>
           <input
             type="text"
             id="nome"
@@ -33,17 +39,23 @@
               </a>
             </div>
           </div>
-          <button class="btn" type="submit">
-            <RouterLink to="/">Entar</RouterLink>
+          <button
+            class="btn btn-lg btn-primary btn-block btn-signin"
+            type="submit"
+          >
+            Entrar
           </button>
         </form>
+        <!-- /form -->
         <a href="#" class="forgot-password"> Esqueceu a senha? </a>
       </div>
+      <!-- /card-container -->
     </div>
+    <!-- /container -->
   </main>
 </template>
 <style scooped>
-.titulo h2 {
+.titulop h2 {
   padding-top: 15px;
   display: flex;
   align-items: center;
@@ -56,7 +68,7 @@ html {
   background-image: linear-gradient white;
 }
 
-.pessoal {
+.card-container.card {
   width: 350px;
   padding: 30px 30px;
 }
@@ -70,11 +82,16 @@ html {
   cursor: default;
 }
 
-.pessoal {
+/*
+ * Card component
+ */
+.card {
   background-color: #f7f7f7;
+  /* just in case there no content*/
   padding: 10px 15px 50px;
   margin: 0 auto 25px;
   margin-top: 50px;
+  /* shadows and rounded borders */
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -83,7 +100,20 @@ html {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-.name {
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/*
+ * Form styles
+ */
+.profile-name-card {
   font-size: 16px;
   font-weight: bold;
   text-align: center;
@@ -91,7 +121,7 @@ html {
   min-height: 1em;
 }
 
-.email {
+.reauth-email {
   display: block;
   color: #404040;
   line-height: 2;
@@ -106,17 +136,17 @@ html {
   box-sizing: border-box;
 }
 
-.form- #inputEmail,
-.form- #inputPassword {
+.form-signin #inputEmail,
+.form-signin #inputPassword {
   direction: ltr;
   height: 44px;
   font-size: 16px;
 }
 
-.form- input[type="email"],
-.form- input[type="password"],
-.form- input[type="text"],
-.form- button {
+.form-signin input[type="email"],
+.form-signin input[type="password"],
+.form-signin input[type="text"],
+.form-signin button {
   width: 100%;
   display: block;
   margin-bottom: 10px;
@@ -127,15 +157,18 @@ html {
   box-sizing: border-box;
 }
 
-.form- .form-control:focus {
-  border-color: rgb(0, 0, 0);
+.form-signin .form-control:focus {
+  border-color: rgb(75, 75, 75);
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(0, 0, 0);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(0, 0, 0);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgb(75, 75, 75);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(75, 75, 75);
 }
 
-.btn {
-  background-color: rgb(0, 0, 0);
+.btn-signin {
+  /*background-color: #4d90fe; */
+  background-color: rgb(75, 75, 75);
+  /* background-color: linear-gradient(rgb(75, 75, 75), rgb(12, 97, 33));*/
   padding: 0px;
   font-weight: 700;
   font-size: 14px;
@@ -148,23 +181,21 @@ html {
   -moz-transition: all 0.218s;
   -webkit-transition: all 0.218s;
   transition: all 0.218s;
-  color: aliceblue;
 }
 
-.btn:hover,
-.btn:active,
-.btn:focus {
-  background-color: rgb(255, 255, 255);
-  color: black;
+.btn-signin:hover,
+.btn-signin:active,
+.btn-signin:focus {
+  background-color: rgb(0, 0, 0);
 }
 
 .forgot-password {
-  color: rgb(61, 61, 61);
+  color: rgb(75, 75, 75);
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus {
-  color: rgb(0, 0, 0);
+  color: rgb(184, 184, 184);
 }
 </style>
